@@ -1,0 +1,16 @@
+<header>
+    <fieldset>
+        <legend>Header</legend>
+
+        <% if (session.isAuthenticated ()) { %>
+            <p><%= session.user.full_name %> <span>|</span> <%= session.user.email %></p>
+            <hr />
+            <a href="/account">Beheer Account</a>
+            <a href="/logout">Log uit</a>
+        <% } else { %>
+            <p>Niet ingelogt</p>
+            <hr />
+            <a href="/login">Log in</a>    
+        <% } %>
+    </fieldset>
+</header>

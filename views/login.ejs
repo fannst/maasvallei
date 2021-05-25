@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inloggen</title>
+</head>
+<body>
+    <div>
+        <form method="POST">
+            <% if (error) { %>
+                <div>
+                    <strong>Foutmelding!!</strong>
+                    <p><%= error %></p>
+                </div>    
+            <% } %>
+            <fieldset>
+                <legend>Log in je account</legend>
+                <div>
+                    <label for="loginUsernameOrEmail">E-Mail of Gebruikersnaam<strong>*</strong>: </label>
+                    <input name="username" placeholder="iemand@fannst.nl" type="text" id="loginUsernameOrEmail" required />
+                </div>
+                <br />
+                <div>
+                    <label for="loginPassword">Wachtwoord<strong>*</strong>: </label>
+                    <input name="password" type="password" id="loginPassword" required />
+                </div>
+                <br />
+                <button type="submit">Log in</button>
+                <hr />
+                <ul>
+                    <li>
+                        <a href="/register">Administrator? Registreer een nieuw account hier.</a>      
+                    </li>
+                </ul>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
