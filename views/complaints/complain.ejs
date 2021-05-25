@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klaag!</title>
+</head>
+<body>
+    <%- include ('../includes/header.ejs') %>
+    <br />
+    <form method="POST">
+        <fieldset>
+            <legend>Klaag nu! Gratis en voor niets.</legend>
+            <div>
+                <label for="complainNameInput">Titel: </label>
+                <input type="text" id="complainNameInput" name="name" required />
+            </div>
+            <br />
+            <div>
+                <label for="complainMessageInput">Klacht: </label>
+                <textarea minlength="1" id="complainMessageInput" name="message" required></textarea>
+            </div>
+            <br />
+            <div>
+                <label for="complainCategorySelect">Categorie: </label>
+                <select id="complainCategorySelect" name="category" required >
+                    <option value="NaN" selected disabled>Selecteer Categorie</option>
+                    <option value="0">Sanitair</option>
+                </select>
+            </div>
+            <br />
+            <div>
+                <label for="complainPrioritySelect">Prioriteit: </label>
+                <select id="complainPrioritySelect" name="priority" required>
+                    <option value="NaN" selected disabled>Selecteer Prioriteit</option>
+                    <option value="0">Extreem Hoog</option>
+                    <option value="1">Hoog</option>
+                    <option value="2">Normaal</option>
+                    <option value="3">Laag</option>
+                </select>
+            </div>
+            <hr />
+            <button type="submit">Verstuur</button>
+        </fieldset>
+    </form>
+    <br />
+    <%- include ('../includes/footer.ejs') %>
+</body>
+</html>

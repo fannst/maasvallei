@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klacht Status</title>
+</head>
+<body>
+    <%- include ('../includes/header.ejs') %>
+    <br />
+    <% if (complaint === null) { %>
+        <p>
+            <strong>Klacht '<%= id %>' bestaat niet.</strong>
+        </p>    
+    <% } else { %>
+        <div>
+            <fieldset>
+                <legend>Klacht <%= id %></legend>
+                <p>
+                    <strong>Datum: </strong>
+                    <em><%= complaint.date.toDateString () %></em>
+
+                    <br />
+                    <strong>Categorie: </strong>
+
+                    <% if (complaint.category === 0) { %>
+                        <em>Sanitair</em>
+                    <% } %>
+
+                    <br />
+                    <strong>Status: </strong>
+
+                    <% if (complaint.status === 0) { %>
+                        <em>Open</em>
+                    <% } else if (complaint.status === 1) { %>
+                        <em>BeingHandled</em>
+                    <% } else if (complaint.status === 2) { %>
+                        <em>Handled</em>
+                    <% } %>
+
+                    <br />
+                    <strong>Wordt behandeld door:</strong>
+                    <em><%= complaint.claim ?? "Niemand" %></em>
+                </p>
+                <hr />
+                <p>
+                    <strong>Titel: </strong>
+                    <%= complaint.name %>
+                    <br />
+                    <strong>Bericht: </strong>
+                    <%= complaint.message %>
+                </p>
+            </fieldset>
+        </div>
+    <% } %>
+    <br />
+    <%- include ('../includes/footer.ejs') %>
+</body>
+</html>

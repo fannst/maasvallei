@@ -9,6 +9,7 @@
 <body>
     <div>
         <form method="POST">
+            <input type="hidden" value="<%= redirect %>" name="redirect" />
             <% if (error) { %>
                 <div>
                     <strong>Foutmelding!!</strong>
@@ -37,5 +38,7 @@
             </fieldset>
         </form>
     </div>
+    <br />
+    <%- include ('includes/footer.ejs') %>
 </body>
 </html>

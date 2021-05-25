@@ -35,7 +35,9 @@ export const get = {
 
     // Renders the result page.
     res.render ('login.ejs', {
-      error: error
+      error: error,
+      url: req.originalUrl,
+      redirect: url.query.redirect
     });
   },
   ///////////////////////////////////////////////////////////////////////////////////
@@ -44,6 +46,9 @@ export const get = {
   logout: async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     let session: Session = (<Session> (<any> req).u_session);
 
+    // Parses the URL.
+    const url: urlParser.UrlWithParsedQuery = urlParser.parse (req.url, true);
+
     // Only de-authenticate if we're actually authenticated.
     if (session.isAuthenticated ()) {
       session.deAuthenticateSession ();
@@ -51,7 +56,8 @@ export const get = {
     }
 
     // Redirect to the login page.
-    res.redirect ('/login');
+    if (!url.query.redirect) res.redirect ('/login');
+    else res.redirect (<string> url.query.redirect);
   }
 };
 
@@ -124,14 +130,17 @@ export const post = {
       return;
     }
 
+    // Gets the params.
+    const { username, password, redirect } = req.body;
+
     // Queries the database for the specified username.
     const user: any = await userModel.findOne ({
       $or: [
         {
-          username: req.body.username
+          username
         },
         {
-          email: req.body.username
+          email: username
         }
       ]
     });
@@ -143,7 +152,7 @@ export const post = {
     }
 
     // Makes sure the passwords match.
-    if (!(await bcryptjs.compare (req.body.password, user.password))) {
+    if (!(await bcryptjs.compare (password, user.password))) {
       res.redirect ('/login?error=invalid_password');
       return;
     }
@@ -154,7 +163,8 @@ export const post = {
     await sess.save (res);
 
     // Redirects the client to the main page.
-    res.redirect ('/panel');
+    if (!redirect) res.redirect ('/panel');
+    else res.redirect (redirect);
   }
 };
 

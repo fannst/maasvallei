@@ -6,6 +6,7 @@ import mongoose from 'mongoose';
 import * as session from './session';
 import authRoute from './routes/auth';
 import agendaRoute from './routes/agenda';
+import complaintsRoute from './routes/complaints';
 
 const app = express();
 
@@ -38,11 +39,13 @@ app.set ('views', path.join (__dirname, '../../', 'views'));
 app.use (session.pre);
 
 app.use ('/agenda', agendaRoute);
+app.use ('/complaints', complaintsRoute);
 app.use ('/', authRoute);
 
 app.get ('*', (req: Request, res: Response, next: NextFunction): void => {
   res.render ('404.ejs', {
-    session: (<session.Session> (<any> req).u_session)
+    session: (<session.Session> (<any> req).u_session),
+    url: req.url
   });
 });
 

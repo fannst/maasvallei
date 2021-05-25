@@ -24,7 +24,8 @@ export const get = {
             session: session,
             items: await agendaModel.find ({
                 userID: session.user?._id
-            }).sort ({ time: -1 })
+            }).sort ({ time: -1 }),
+            url: req.originalUrl
         });
     },
     ///////////////////////////////////////////////////////////////////////////////////
@@ -38,7 +39,8 @@ export const get = {
         }
 
         res.render ('agenda/schedule.ejs', {
-            session: session
+            session: session,
+            url: req.originalUrl
         });
     },
     ///////////////////////////////////////////////////////////////////////////////////
@@ -55,7 +57,7 @@ export const get = {
             _id: mongoose.Types.ObjectId.createFromHexString (req.params.id)
         }, {
             completed: true
-        })
+        });
 
         res.redirect ('/agenda');
     },

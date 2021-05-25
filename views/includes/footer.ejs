@@ -1,0 +1,41 @@
+<ul>
+    <li>
+        <p>
+            <strong>Authenticatie</strong>
+        </p>
+        <ul>
+            <li>
+                <a href="/login?redirect=<%= encodeURIComponent (url) %>">Log in</a>    
+            </li>
+            <li>
+                <a href="/logout?redirect=<%= encodeURIComponent (url) %>">Log uit</a>    
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            <strong>Agenda</strong>
+        </p>
+        <ul>
+            <li>
+                <a href="/agenda">Agenda</a>
+            </li>
+            <li>
+                <a href="/agenda/schedule">Voeg item toe</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <p>
+            <strong>Klachten</strong>
+        </p>
+        <ul>
+            <li>
+                <a href="/complaints/complain">Voeg klacht toe</a>
+            </li>
+            <li>
+                <a href="/complaints">Beheer Klachten</a>
+            </li>
+        </ul>
+    </li>
+</ul>
